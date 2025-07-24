@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sistema de Gestión de Ventas</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#">Gestión de Ventas</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="#" id="nav-usuarios">Usuarios</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#" id="nav-ventas">Ventas</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#" id="nav-facturas">Facturas</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container mt-4">
+        <div id="usuarios-section">
+            <h2>Gestión de Usuarios</h2>
+            <button class="btn btn-primary mb-3" data-bs-toggle="modal" data-bs-target="#userModal" id="btn-new-user">Nuevo Usuario</button>
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Nombre</th>
+                        <th>Email</th>
+                        <th>Teléfono</th>
+                        <th>Dirección</th>
+                        <th>Tipo</th>
+                        <th>Estado</th>
+                        <th>Acciones</th>
+                    </tr>
+                </thead>
+                <tbody id="users-table-body">
+                    <!-- Users will be loaded here -->
+                </tbody>
+            </table>
+        </div>
+
+        <div id="ventas-section" style="display:none;">
+            <h2>Gestión de Ventas</h2>
+            <div class="row mb-3">
+                <div class="col-md-6">
+                    <label for="select-cliente" class="form-label">Cliente</label>
+                    <select class="form-select" id="select-cliente" required>
+                        <option value="">Seleccione un cliente</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="row mb-3">
+                <div class="col-md-4">
+                    <label for="select-producto" class="form-label">Producto</label>
+                    <select class="form-select" id="select-producto" required>
+                        <option value="">Seleccione un producto</option>
+                    </select>
+                </div>
+                <div class="col-md-2">
+                    <label for="input-cantidad" class="form-label">Cantidad</label>
+                    <input type="number" class="form-control" id="input-cantidad" min="1" value="1" required>
+                </div>
+                <div class="col-md-3">
+                    <label for="input-subtotal" class="form-label">Subtotal</label>
+                    <input type="text" class="form-control" id="input-subtotal" readonly>
+                </div>
+                <div class="col-md-3 d-flex align-items-end">
+                    <button class="btn btn-info w-100" id="btn-add-to-cart">Agregar al Carrito</button>
+                </div>
+            </div>
+
+            <h3>Carrito de Compras</h3>
+            <table class="table table-bordered">
+                <thead>
+                    <tr>
+                        <th>Producto</th>
+                        <th>Cantidad</th>
+                        <th>Precio Unitario</th>
+                        <th>Subtotal</th>
+                        <th>Acciones</th>
+                    </tr>
+                </thead>
+                <tbody id="cart-table-body">
+                    <!-- Cart items will be loaded here -->
+                </tbody>
+            </table>
+
+            <div class="d-flex justify-content-end">
+                <h4>Total Factura: <span id="total-factura">0.00</span></h4>
+            </div>
+            <button class="btn btn-success w-100 mt-3" id="btn-finalize-invoice">Finalizar Factura</button>
+        </div>
+
+        <div id="facturas-section" style="display:none;">
+            <h2>Listado de Facturas</h2>
+            <div id="invoices-list-container"></div>
+        </div>
+    </div>
+
+    <!-- User Modal -->
+    <div class="modal fade" id="userModal" tabindex="-1" aria-labelledby="userModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="userModalLabel">Crear/Editar Usuario</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form id="user-form">
+                        <input type="hidden" id="user-id">
+                        <div class="mb-3">
+                            <label for="user-nombre" class="form-label">Nombre</label>
+                            <input type="text" class="form-control" id="user-nombre" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="user-email" class="form-label">Email</label>
+                            <input type="email" class="form-control" id="user-email" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="user-telefono" class="form-label">Teléfono</label>
+                            <input type="text" class="form-control" id="user-telefono">
+                        </div>
+                        <div class="mb-3">
+                            <label for="user-direccion" class="form-label">Dirección</label>
+                            <textarea class="form-control" id="user-direccion"></textarea>
+                        </div>
+                        <div class="mb-3">
+                            <label for="user-tipo" class="form-label">Tipo</label>
+                            <select class="form-select" id="user-tipo" required>
+                                <option value="admin">Admin</option>
+                                <option value="cliente">Cliente</option>
+                                <option value="empleado">Empleado</option>
+                            </select>
+                        </div>
+                        <button type="submit" class="btn btn-primary">Guardar Usuario</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- Custom JS -->
+    <script src="js/scripts.js"></script>
+</body>
+</html>

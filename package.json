@@ -1,0 +1,13 @@
+{
+  "name": "sistema-ventas-backend",
+  "version": "1.0.0",
+  "description": "Backend para el sistema de gestión de ventas.",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "dependencies": {
+    "express": "^4.18.2",
+    "mysql2": "^2.3.3"
+  }
+}

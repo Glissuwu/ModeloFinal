@@ -1,0 +1,53 @@
+body {
+    background-color: #F8F9FA; /* Un gris claro para el fondo */
+    color: #212529; /* Color de texto oscuro */
+}
+
+.navbar {
+    background-color: #17153B !important; /* Color oscuro de la paleta */
+}
+
+.navbar-brand,
+.nav-link {
+    color: #C8ACD6 !important; /* Color claro de la paleta para el texto de la nav */
+}
+
+.nav-link.active {
+    color: #FFFFFF !important; /* Blanco para el enlace activo */
+    background-color: #2E236C; /* Un tono intermedio de la paleta */
+    border-radius: 5px;
+}
+
+.btn-primary {
+    background-color: #433D8B; /* Un tono de azul/púrpura de la paleta */
+    border-color: #433D8B;
+}
+
+.btn-primary:hover {
+    background-color: #2E236C; /* Tono más oscuro al pasar el ratón */
+    border-color: #2E236C;
+}
+
+.btn-success {
+    background-color: #28A745; /* Verde estándar de Bootstrap para éxito */
+    border-color: #28A745;
+}
+
+.btn-danger {
+    background-color: #DC3545; /* Rojo estándar de Bootstrap para peligro */
+    border-color: #DC3545;
+}
+
+.table thead {
+    background-color: #433D8B; /* Encabezado de tabla con color de la paleta */
+    color: white;
+}
+
+.modal-header {
+    background-color: #2E236C; /* Encabezado de modal con color de la paleta */
+    color: white;
+}
+
+.modal-title {
+    color: white;
+}
